@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Форма для заполнения данных</title>
+</head>
+<body>
+    <h1>Введите данные дела:</h1>
+    <form action="form_handler.php" method="post">
+        <label for="id">Номер дела:</label>
+        <input type="text" id="id" name="id"><br>
+
+        <label for="case_category">Категория дела:</label>
+        <input type="text" id="case_category" name="case_category"><br>
+
+        <label for="plaintiff">Истец:</label>
+        <input type="text" id="plaintiff" name="plaintiff"><br>
+
+        <label for="defendant">Ответчик:</label>
+        <input type="text" id="defendant" name="defendant"><br>
+
+        <label for="judge">Судья:</label>
+        <input type="text" id="judge" name="judge"><br>
+
+	<label for="court">Суд:</label>
+	<input type="text" id="court" name="court"><br>
+
+        <input type="submit" value="Отправить">
+    </form>
+</body>
+</html>
