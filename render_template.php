@@ -6,26 +6,24 @@
     $database = 'templater'; // Имя базы данных
     $table = 'templ_fields';
 
-    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    $id = $_POST["id"];
+    $conn = mysqli_connect($host, $username, $password, $database);
+     if (mysqli_connect_errno()) {
 
-$mysqli = new mysqli();
-$mysqli->options(MYSQLI_OPT_INT_AND_FLOAT_NATIVE, 1);
-$mysqli->real_connect($host, $username, $password, $database);
+    printf("connection failed: %s\n", mysqli_connect_error());
+    exit();
+    }
+    $query = "select * from templ_fields where id = '$id'";
+    $res = mysqli_query($conn, $query);
+    if ($res) {
 
-$id = $_POST["id"];
-$sql = "SELECT id, case_category, plaintiff, defendant, judge, court FROM $table where id like $id";
-$result = $mysqli->query($sql);
-$row = $result->fetch_assoc();
-
-//$id = $row["id"];
-$case_category = $row["case_category"];
-$plaintiff = $row["plaintiff"];
-$defendant = $row["defendant"];
-$judge = $row["judge"];
-$court = $row["court"];
-
-//$id = $_POST['id'];
-
+    $row = mysqli_fetch_assoc($res); 
+    $case_category = $row["case_category"];
+    $plaintiff = $row["plaintiff"];
+    $defendant = $row["defendant"];
+    $judge = $row["judge"];
+    $court = $row["court"];
+    } 
 echo "
         <meta charset='UTF-8'>
         <div class='center' >
@@ -48,7 +46,7 @@ echo "
 echo "
 <form method='POST'>
     <label for='id'>Номер дела:</label>
-    <input type='text' id='id' name='id'>
+    <input type='text' id='id' name='id' value='1'>
     <input type='submit' value='Найти дело'>
 </form>
 ";
